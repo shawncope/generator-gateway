@@ -3,9 +3,10 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
+var mkdirp = require('mkdirp');
 // var yosay = require('yosay');   -- don't think I need this
 
-var GatewayGenerator = yeoman.generators.Base.exports({
+var GatewayGenerator = yeoman.generators.Base.extend({
   promptUser: function() {
     var done = this.async();
 
@@ -13,7 +14,7 @@ var GatewayGenerator = yeoman.generators.Base.exports({
 
     var prompts = [{
       name: 'appName',
-      message: 'What is your app\'s name'
+      message: 'What is your app\'s name?'
     },{
       type: 'confirm',
       name: 'useAssemble',
@@ -21,7 +22,7 @@ var GatewayGenerator = yeoman.generators.Base.exports({
       default: true
     }];
 
-    this.prompt(prompts, funcntion(props) {
+    this.prompt(prompts, function(props) {
       this.appName = props.appName;
       this.useAssemble = props.useAssemble;
 
@@ -31,19 +32,60 @@ var GatewayGenerator = yeoman.generators.Base.exports({
 
   scaffoldFolders: function(){
     //todo: this certainly looks like it can be more efficient
-    this.mkdir('files');
-    this.mkdir('provision');
-    this.mkdir('src');
-    this.mkdir('src/images');
-    this.mkdir('src/js');
-    this.mkdir('src/js/mods');
-    this.mkdir('src/js/vendor');
-    this.mkdir('src/scss');
-    this.mkdir('src/scss/base');
-    this.mkdir('src/scss/components');
-    this.mkdir('src/scss/layout');
-    this.mkdir('src/scss/mods');
-    this.mkdir('src/scss/sections');
+    // this.mkdir('files');
+    // this.mkdir('provision');
+    // this.mkdir('src');
+    // this.mkdir('src/images');
+    // this.mkdir('src/js');
+    // this.mkdir('src/js/mods');
+    // this.mkdir('src/js/vendor');
+    // this.mkdir('src/scss');
+    // this.mkdir('src/scss/base');
+    // this.mkdir('src/scss/components');
+    // this.mkdir('src/scss/layout');
+    // this.mkdir('src/scss/mods');
+    // this.mkdir('src/scss/sections');
+    mkdirp('files', function (err) {
+        if (err) console.error(err)
+        else console.log('pow!')
+    });
+    mkdirp('provision', function (err) {
+        if (err) console.error(err)
+        else console.log('pow!')
+    });
+    mkdirp('src/images', function (err) {
+        if (err) console.error(err)
+        else console.log('pow!')
+    });
+    mkdirp('src/js/mods', function (err) {
+        if (err) console.error(err)
+        else console.log('pow!')
+    });
+    mkdirp('src/js/vendor', function (err) {
+        if (err) console.error(err)
+        else console.log('pow!')
+    });
+    mkdirp('src/scss/base', function (err) {
+        if (err) console.error(err)
+        else console.log('pow!')
+    });
+    mkdirp('src/scss/components', function (err) {
+        if (err) console.error(err)
+        else console.log('pow!')
+    });
+    mkdirp('src/scss/layout', function (err) {
+        if (err) console.error(err)
+        else console.log('pow!')
+    });
+    mkdirp('src/scss/mods', function (err) {
+        if (err) console.error(err)
+        else console.log('pow!')
+    });
+    mkdirp('src/scss/sections', function (err) {
+        if (err) console.error(err)
+        else console.log('pow!')
+    });
+
   },
 
   copyMainFiles: function() {
