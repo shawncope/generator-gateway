@@ -32,58 +32,35 @@ var GatewayGenerator = yeoman.generators.Base.extend({
 
   scaffoldFolders: function(){
     //todo: this certainly looks like it can be more efficient
-    // this.mkdir('files');
-    // this.mkdir('provision');
-    // this.mkdir('src');
-    // this.mkdir('src/images');
-    // this.mkdir('src/js');
-    // this.mkdir('src/js/mods');
-    // this.mkdir('src/js/vendor');
-    // this.mkdir('src/scss');
-    // this.mkdir('src/scss/base');
-    // this.mkdir('src/scss/components');
-    // this.mkdir('src/scss/layout');
-    // this.mkdir('src/scss/mods');
-    // this.mkdir('src/scss/sections');
     mkdirp('files', function (err) {
-        if (err) console.error(err)
-        else console.log('pow!')
+        if (err) console.error(there was a problem creating the directory structure)
     });
     mkdirp('provision', function (err) {
-        if (err) console.error(err)
-        else console.log('pow!')
+        if (err) console.error(there was a problem creating the directory structure)
     });
     mkdirp('src/images', function (err) {
-        if (err) console.error(err)
-        else console.log('pow!')
+        if (err) console.error(there was a problem creating the directory structure)
     });
     mkdirp('src/js/mods', function (err) {
-        if (err) console.error(err)
-        else console.log('pow!')
+        if (err) console.error(there was a problem creating the directory structure)
     });
     mkdirp('src/js/vendor', function (err) {
-        if (err) console.error(err)
-        else console.log('pow!')
+        if (err) console.error(there was a problem creating the directory structure)
     });
     mkdirp('src/scss/base', function (err) {
-        if (err) console.error(err)
-        else console.log('pow!')
+        if (err) console.error(there was a problem creating the directory structure)
     });
     mkdirp('src/scss/components', function (err) {
-        if (err) console.error(err)
-        else console.log('pow!')
+        if (err) console.error(there was a problem creating the directory structure)
     });
     mkdirp('src/scss/layout', function (err) {
-        if (err) console.error(err)
-        else console.log('pow!')
+        if (err) console.error(there was a problem creating the directory structure)
     });
     mkdirp('src/scss/mods', function (err) {
-        if (err) console.error(err)
-        else console.log('pow!')
+        if (err) console.error(there was a problem creating the directory structure)
     });
     mkdirp('src/scss/sections', function (err) {
-        if (err) console.error(err)
-        else console.log('pow!')
+        if (err) console.error(there was a problem creating the directory structure)
     });
 
   },
