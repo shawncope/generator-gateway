@@ -10,17 +10,20 @@ var GatewayGenerator = yeoman.generators.Base.extend({
   promptUser: function() {
     var done = this.async();
 
-    // console.log(this.yeoman);   -- supposed to show the yeoman ascii art... spitting out undefined instead.
-
+    // this prompt is not being used. In the future we should make use of fs.copyTpl to use project name for JS namespacing
     var prompts = [{
       name: 'appName',
       message: 'What is your app\'s name?'
-    },{
+    }
+    /*
+    // this is for future use since something like assemble.io would be awesome in this project
+    ,{
       type: 'confirm',
       name: 'useAssemble',
       message: 'Would you like to use assemble?',
       default: true
-    }];
+    }*/
+    ];
 
     this.prompt(prompts, function(props) {
       this.appName = props.appName;
@@ -41,7 +44,6 @@ var GatewayGenerator = yeoman.generators.Base.extend({
     mkdirp('src/scss/layout');
     mkdirp('src/scss/mods');
     mkdirp('src/scss/sections');
-    chalk.bgGreen('Directory structure has been setup');
   },
 
   copyMainFiles: function() {
@@ -150,13 +152,18 @@ var GatewayGenerator = yeoman.generators.Base.extend({
       this.templatePath('xdebug.ini'),
       this.destinationPath('files/xdebug.ini')
     );
-    chalk.bgGreen('Template files have been Copied into place.');
   },
 
   installNpmAndBower: function() {
     this.installDependencies();
-    chalk.bgGreen('npm install and bower install have completed');
-    chalk.blue('\nAt this point you are set up and ready to go. You have the option of starting vagrant by running \'vagrant up\'. Checkout https://github.com/FindawayWorld/gateway for more info on the Gateway Boilerplate\n');
+  },
+
+  end: function() {
+    var messageInstallationComplete =
+      chalk.bgGreen('\n\n npm install and bower install have completed\n') +
+      chalk.blue('\n\nAt this point you are set up and ready to go. You have the option of starting vagrant by running \'vagrant up\'. Checkout https://github.com/FindawayWorld/gateway for more info on the Gateway Boilerplate\n\n')
+    ;
+    console.log(messageInstallationComplete);
   }
 
 });
