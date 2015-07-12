@@ -41,6 +41,7 @@ var GatewayGenerator = yeoman.generators.Base.extend({
     mkdirp('src/scss/layout');
     mkdirp('src/scss/mods');
     mkdirp('src/scss/sections');
+    chalk.bgGreen('Directory structure has been setup');
   },
 
   copyMainFiles: function() {
@@ -149,11 +150,13 @@ var GatewayGenerator = yeoman.generators.Base.extend({
       this.templatePath('xdebug.ini'),
       this.destinationPath('files/xdebug.ini')
     );
-
+    chalk.bgGreen('Template files have been Copied into place.');
   },
 
   installNpmAndBower: function() {
     this.installDependencies();
+    chalk.bgGreen('npm install and bower install have completed');
+    chalk.blue('\nAt this point you are set up and ready to go. You have the option of starting vagrant by running \'vagrant up\'. Checkout https://github.com/FindawayWorld/gateway for more info on the Gateway Boilerplate\n');
   }
 
 });
