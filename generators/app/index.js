@@ -152,17 +152,9 @@ var GatewayGenerator = yeoman.generators.Base.extend({
 
   },
 
-  // runNpm: function () {
-  //   var done = this.async();
-  //   this.npmInstall('', function() {
-  //     console.log('/nGateway is setup and ready to use, happy developing!');
-  //     done();
-  //   });
-  // }
-
-
-
-
+  installNpmAndBower: function() {
+    this.installDependencies();
+  }
 
 });
 
