@@ -4,13 +4,13 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var mkdirp = require('mkdirp');
-// var yosay = require('yosay');   -- don't think I need this
+var yosay = require('yosay');
 
 var GatewayGenerator = yeoman.generators.Base.extend({
   promptUser: function() {
     var done = this.async();
 
-    console.log(this.yeoman);
+    // console.log(this.yeoman);   -- supposed to show the yeoman ascii art... spitting out undefined instead.
 
     var prompts = [{
       name: 'appName',
@@ -31,77 +31,134 @@ var GatewayGenerator = yeoman.generators.Base.extend({
   },
 
   scaffoldFolders: function(){
-    //todo: this certainly looks like it can be more efficient
-    mkdirp('files', function (err) {
-        if (err) console.error(there was a problem creating the directory structure)
-    });
-    mkdirp('provision', function (err) {
-        if (err) console.error(there was a problem creating the directory structure)
-    });
-    mkdirp('src/images', function (err) {
-        if (err) console.error(there was a problem creating the directory structure)
-    });
-    mkdirp('src/js/mods', function (err) {
-        if (err) console.error(there was a problem creating the directory structure)
-    });
-    mkdirp('src/js/vendor', function (err) {
-        if (err) console.error(there was a problem creating the directory structure)
-    });
-    mkdirp('src/scss/base', function (err) {
-        if (err) console.error(there was a problem creating the directory structure)
-    });
-    mkdirp('src/scss/components', function (err) {
-        if (err) console.error(there was a problem creating the directory structure)
-    });
-    mkdirp('src/scss/layout', function (err) {
-        if (err) console.error(there was a problem creating the directory structure)
-    });
-    mkdirp('src/scss/mods', function (err) {
-        if (err) console.error(there was a problem creating the directory structure)
-    });
-    mkdirp('src/scss/sections', function (err) {
-        if (err) console.error(there was a problem creating the directory structure)
-    });
-
+    mkdirp('files');
+    mkdirp('provision');
+    mkdirp('src/images');
+    mkdirp('src/js/mods');
+    mkdirp('src/js/vendor');
+    mkdirp('src/scss/base');
+    mkdirp('src/scss/components');
+    mkdirp('src/scss/layout');
+    mkdirp('src/scss/mods');
+    mkdirp('src/scss/sections');
   },
 
   copyMainFiles: function() {
     //todo: will need to at least template some of these files. would be more efficient to just copy full directories recurrsively, but apparently this is frowned upon
-    this.copy('_base.scss', 'src/scss/base/_base.scss');
-    this.copy('_buttons.scss', 'src/scss/components/_buttons.scss');
-    this.copy('_footer.scss', 'src/scss/mods/_footer.scss');
-    this.copy('_forms.scss', 'src/scss/components/_forms.scss');
-    this.copy('_full-bleed.scss', 'src/scss/sections/_full-bleed.scss');
-    this.copy('_grid.scss', 'src/scss/layout/_grid.scss');
-    this.copy('_links.scss', 'src/scss/components/_links.scss');
-    this.copy('_settings.scss', 'src/scss/_settings.scss');
-    this.copy('_tables.scss', 'src/scss/components/_tables.scss');
-    this.copy('_typography.scss', 'src/scss/base/_typography.scss');
-    this.copy('bowerrc', '.bowerrc');
-    this.copy('editorconfig', '.editorconfig');
-    this.copy('gitignore', '.gitignore');
-    this.copy('bower.json', 'bower.json');
-    this.copy('Gruntfile.js', 'Gruntfile.js');
-    this.copy('index.html', 'src/index.html');
-    this.copy('LICENSE', 'LICENSE');
-    this.copy('macros.conf', 'files/macros.conf');
-    this.copy('main.js', 'js/main.js');
-    this.copy('modernizr.min.js', 'js/vendor/modernizr.min.js');
-    this.copy('package.json', 'package.json');
-    this.copy('README.md', 'README.md');
-    this.copy('styles.scss', 'scss/styles.scss');
-    this.copy('Vagrantfile', 'Vagrantfile');
-    this.copy('vhost.conf', 'files/vhost.conf');
-    this.copy('xdebug.ini', 'files/xdebug.ini');
+    this.fs.copy(
+      this.templatePath('_base.scss'),
+      this.destinationPath('src/scss/base/_base.scss')
+    );
+    this.fs.copy(
+      this.templatePath('_buttons.scss'),
+      this.destinationPath('src/scss/components/_buttons.scss')
+    );
+    this.fs.copy(
+      this.templatePath('_footer.scss'),
+      this.destinationPath('src/scss/mods/_footer.scss')
+    );
+    this.fs.copy(
+      this.templatePath('_forms.scss'),
+      this.destinationPath('src/scss/components/_forms.scss')
+    );
+    this.fs.copy(
+      this.templatePath('_full-bleed.scss'),
+      this.destinationPath('src/scss/sections/_full-bleed.scss')
+    );
+    this.fs.copy(
+      this.templatePath('_grid.scss'),
+      this.destinationPath('src/scss/layout/_grid.scss')
+    );
+    this.fs.copy(
+      this.templatePath('_links.scss'),
+      this.destinationPath('src/scss/components/_links.scss')
+    );
+    this.fs.copy(
+      this.templatePath('_settings.scss'),
+      this.destinationPath('src/scss/_settings.scss')
+    );
+    this.fs.copy(
+      this.templatePath('_tables.scss'),
+      this.destinationPath('src/scss/components/_tables.scss')
+    );
+    this.fs.copy(
+      this.templatePath('_typography.scss'),
+      this.destinationPath('src/scss/base/_typography.scss')
+    );
+    this.fs.copy(
+      this.templatePath('bowerrc'),
+      this.destinationPath('.bowerrc')
+    );
+    this.fs.copy(
+      this.templatePath('editorconfig'),
+      this.destinationPath('.editorconfig')
+    );
+    this.fs.copy(
+      this.templatePath('gitignore'),
+      this.destinationPath('.gitignore')
+    );
+    this.fs.copy(
+      this.templatePath('bower.json'),
+      this.destinationPath('bower.json')
+    );
+    this.fs.copy(
+      this.templatePath('Gruntfile.js'),
+      this.destinationPath('Gruntfile.js')
+    );
+    this.fs.copy(
+      this.templatePath('index.html'),
+      this.destinationPath('src/index.html')
+    );
+    this.fs.copy(
+      this.templatePath('LICENSE'),
+      this.destinationPath('LICENSE')
+    );
+    this.fs.copy(
+      this.templatePath('macros.conf'),
+      this.destinationPath('files/macros.conf')
+    );
+    this.fs.copy(
+      this.templatePath('main.js'),
+      this.destinationPath('js/main.js')
+    );
+    this.fs.copy(
+      this.templatePath('modernizr.min.js'),
+      this.destinationPath('js/vendor/modernizr.min.js')
+    );
+    this.fs.copy(
+      this.templatePath('package.json'),
+      this.destinationPath('package.json')
+    );
+    this.fs.copy(
+      this.templatePath('README.md'),
+      this.destinationPath('README.md')
+    );
+    this.fs.copy(
+      this.templatePath('styles.scss'),
+      this.destinationPath('scss/styles.scss')
+    );
+    this.fs.copy(
+      this.templatePath('Vagrantfile'),
+      this.destinationPath('Vagrantfile')
+    );
+    this.fs.copy(
+      this.templatePath('vhost.conf'),
+      this.destinationPath('files/vhost.conf')
+    );
+    this.fs.copy(
+      this.templatePath('xdebug.ini'),
+      this.destinationPath('files/xdebug.ini')
+    );
+
   },
 
-  runNpm: function () {
-    var done = this.async();
-    this.npmInstall('', function() {
-      console.log('/nGateway is setup and ready to use, happy developing!');
-      done();
-    });
-  }
+  // runNpm: function () {
+  //   var done = this.async();
+  //   this.npmInstall('', function() {
+  //     console.log('/nGateway is setup and ready to use, happy developing!');
+  //     done();
+  //   });
+  // }
 
 
 
